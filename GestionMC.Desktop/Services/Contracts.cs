@@ -1,4 +1,5 @@
 using GestionMC.Desktop.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,6 +15,11 @@ public interface IOracleFacturaPagoService
     List<FacturaPagoRow> GetFacturasPago();
     List<RetencionDetalleRow> GetRetencionDetalle(string coNumero);
     bool ExisteCompra(string coNumero);
+}
+
+public interface IOracleColorService
+{
+    List<ColorFacturaRow> BuscarColores(string? cedula, string? chasis, string? nombre, DateTime? fechaDesde, DateTime? fechaHasta);
 }
 
 public interface ISriRecibidosService

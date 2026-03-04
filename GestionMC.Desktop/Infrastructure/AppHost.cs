@@ -27,6 +27,7 @@ public static class AppHost
         services.AddTransient<ISriRecibidosService, SriRecibidosService>();
         services.AddTransient<IOracleProveedorService>(sp => new OracleProveedorService(BuildConnectionString(settings)));
         services.AddTransient<IOracleFacturaPagoService>(sp => new OracleFacturaPagoService(BuildConnectionString(settings)));
+        services.AddTransient<IOracleColorService>(sp => new OracleColorService(BuildConnectionString(settings)));
 
         services.AddTransient<Func<ISriSessionService>>(sp => () =>
         {
