@@ -1,0 +1,106 @@
+<Window x:Class="GestionMC.Desktop.RetencionDetalleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Detalle de retención"
+        Height="640"
+        Width="940"
+        WindowStartupLocation="CenterOwner"
+        Background="{DynamicResource PageBackground}">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="PageBackground" Color="#FFF4F5F7"/>
+        <SolidColorBrush x:Key="CardBackground" Color="White"/>
+        <SolidColorBrush x:Key="BorderBrushLight" Color="#FFCED4DA"/>
+    </Window.Resources>
+
+    <Grid Margin="12" Background="{StaticResource PageBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Padding="12" Margin="0,0,0,10" Background="{StaticResource CardBackground}" BorderBrush="{StaticResource BorderBrushLight}" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,0,12,8">
+                    <TextBlock Text="Proveedor:" FontWeight="SemiBold" Margin="0,0,6,0"/>
+                    <TextBlock x:Name="TxtProveedor" FontSize="14" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="N° Factura:" FontWeight="SemiBold" Margin="0,0,6,0"/>
+                    <TextBlock x:Name="TxtFactura" FontSize="14"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0,0,12,8">
+                    <TextBlock Text="N° Compra:" FontWeight="SemiBold" Margin="0,0,6,0"/>
+                    <TextBlock x:Name="TxtCompra" FontSize="14"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="N° Retención:" FontWeight="SemiBold" Margin="0,0,6,0"/>
+                    <TextBlock x:Name="TxtRetencion" FontSize="14"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Margin="0,0,12,8">
+                    <TextBlock Text="Subtotal:" FontWeight="SemiBold" Margin="0,0,6,0"/>
+                    <TextBlock x:Name="TxtSubtotal" FontSize="14"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="IVA:" FontWeight="SemiBold" Margin="0,0,6,0"/>
+                    <TextBlock x:Name="TxtIva" FontSize="14"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock Text="Base 15%:" FontWeight="SemiBold" Margin="0,0,6,0"/>
+                    <TextBlock x:Name="TxtBase15" FontSize="14"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock Text="Total:" FontWeight="SemiBold" Margin="0,0,6,0"/>
+                    <TextBlock x:Name="TxtTotal" FontSize="14"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Padding="12" Background="{StaticResource CardBackground}" BorderBrush="{StaticResource BorderBrushLight}" BorderThickness="1">
+            <DataGrid x:Name="GridRetencion"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserAddRows="False"
+                      CanUserResizeColumns="False"
+                      CanUserResizeRows="False"
+                      CanUserSortColumns="False"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      SelectionMode="Single"
+                      SelectionUnit="Cell"
+                      Language="en-US">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="N° Producto" Binding="{Binding ItCodAnt}" Width="130"/>
+                    <DataGridTextColumn Header="Producto" Binding="{Binding Producto}" Width="*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad, StringFormat=0.##, ConverterCulture=en-US}" Width="110"/>
+                    <DataGridTextColumn Header="Costo Unitario" Binding="{Binding CostoUnitario, StringFormat=0.##, ConverterCulture=en-US}" Width="130"/>
+                    <DataGridTextColumn Header="Subtotal" Binding="{Binding SubtotalLinea, StringFormat=0.##, ConverterCulture=en-US}" Width="130"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <Border Grid.Row="2" Padding="8" Margin="0,10,0,0" Background="{StaticResource PageBackground}">
+            <TextBlock x:Name="LblStatus" Text=""/>
+        </Border>
+    </Grid>
+</Window>
