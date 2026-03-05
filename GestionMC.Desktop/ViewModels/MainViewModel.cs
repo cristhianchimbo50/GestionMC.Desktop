@@ -374,7 +374,7 @@ public class MainViewModel : INotifyPropertyChanged
 
         return Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "SriExtractor",
+            "GestionMC",
             "Xml",
             year.ToString("D4"),
             monthFolder,

@@ -89,15 +89,19 @@
                         Command="{Binding OpenSriCommand}"/>
 
                 <Button Content="Proveedores"
-                        Width="130" Height="38"
+                        Width="130" Height="38" Margin="12,0,0,0"
                         Click="BtnOpenProveedores_Click"/>
 
                 <Button Content="Facturas BD"
-                        Width="130" Height="38"
+                        Width="130" Height="38" Margin="12,0,0,0"
                         Click="BtnOpenFacturasBd_Click"/>
 
-                <Button Content="Desactivados"
-                    Width="130" Height="38"
+                <Button Content="Facturas por mes"
+                        Width="150" Height="38" Margin="12,0,0,0"
+                        Click="BtnOpenFacturasMes_Click"/>
+
+                <Button Content="Proveedores desactivados"
+                    Width="170" Height="38" Margin="12,0,0,0"
                     Click="BtnOpenDisabledProviders_Click"/>
             </StackPanel>
         </Border>

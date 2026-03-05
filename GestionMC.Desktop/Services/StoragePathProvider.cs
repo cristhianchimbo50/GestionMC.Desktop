@@ -14,7 +14,7 @@ public class StoragePathProvider : IStoragePathProvider
     {
         var folder = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "GestionMC.Desktop"
+            "GestionMC"
         );
 
         Directory.CreateDirectory(folder);

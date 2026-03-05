@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Colores de facturas"
         Height="620"
-        Width="1100"
+        Width="1291"
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource PageBackground}">
 
@@ -32,32 +32,31 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Vertical" Margin="0,0,12,0">
-                    <TextBlock Text="Cédula" FontWeight="SemiBold"/>
-                    <TextBox x:Name="TxtCedula" Height="28"/>
+                    <TextBlock Text="Cédula" FontWeight="SemiBold" FontSize="14"/>
+                    <TextBox x:Name="TxtCedula" Height="28" FontSize="14" TextChanged="TxtFiltro_TextChanged" CharacterCasing="Upper"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,0,12,0">
-                    <TextBlock Text="Color (DV_CHASIS)" FontWeight="SemiBold"/>
-                    <TextBox x:Name="TxtColor" Height="28"/>
+                    <TextBlock FontWeight="SemiBold" FontSize="14"><Run Text="Color (DV_CH"/><Run Text="ASIS)"/></TextBlock>
+                    <TextBox x:Name="TxtColor" Height="28" FontSize="14" TextChanged="TxtFiltro_TextChanged" CharacterCasing="Upper"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Orientation="Vertical" Margin="0,0,12,0">
-                    <TextBlock Text="Nombre" FontWeight="SemiBold"/>
-                    <TextBox x:Name="TxtNombre" Height="28"/>
+                    <TextBlock Text="Nombre" FontWeight="SemiBold" FontSize="14"/>
+                    <TextBox x:Name="TxtNombre" Height="28" FontSize="14" TextChanged="TxtFiltro_TextChanged" CharacterCasing="Upper"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="3" Orientation="Vertical" Margin="0,0,12,0">
-                    <TextBlock Text="Fecha desde" FontWeight="SemiBold"/>
-                    <DatePicker x:Name="DpDesde" SelectedDateFormat="Short"/>
+                    <TextBlock Text="Fecha desde" FontWeight="SemiBold" FontSize="14"/>
+                    <DatePicker x:Name="DpDesde" SelectedDateFormat="Short" FontSize="14"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="4" Orientation="Vertical" Margin="0,0,12,0">
-                    <TextBlock Text="Fecha hasta" FontWeight="SemiBold"/>
-                    <DatePicker x:Name="DpHasta" SelectedDateFormat="Short"/>
+                    <TextBlock Text="Fecha hasta" FontWeight="SemiBold" FontSize="14"/>
+                    <DatePicker x:Name="DpHasta" SelectedDateFormat="Short" FontSize="14"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <Button Content="Buscar" Width="110" Height="32" Click="BtnBuscar_Click" Margin="0,0,8,0"/>
                     <Button Content="Limpiar" Width="110" Height="32" Click="BtnLimpiar_Click"/>
                 </StackPanel>
             </Grid>
@@ -70,15 +69,16 @@
                   CanUserAddRows="False"
                   CanUserSortColumns="False"
                   CanUserResizeColumns="False"
-                  CanUserResizeRows="False">
+                  CanUserResizeRows="False"
+                  FontSize="14">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Cédula" Binding="{Binding Cedula}" Width="120"/>
                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
-                <DataGridTextColumn Header="Número venta" Binding="{Binding NumeroVenta}" Width="140"/>
+                <DataGridTextColumn Header="Número de venta" Binding="{Binding NumeroVenta}" Width="140"/>
                 <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha, StringFormat=dd/MM/yyyy}" Width="110"/>
-                <DataGridTextColumn Header="Color" Binding="{Binding Color}" Width="140"/>
-                <DataGridTextColumn Header="Código ítem" Binding="{Binding CodigoItem}" Width="120"/>
+                <DataGridTextColumn Header="Código" Binding="{Binding CodigoItem}" Width="120"/>
                 <DataGridTextColumn Header="Ítem" Binding="{Binding NombreItem}" Width="220"/>
+                <DataGridTextColumn Header="Color" Binding="{Binding Color}" Width="140"/>
                 <DataGridTextColumn Header="Total con IVA" Binding="{Binding TotalConIva, StringFormat=N2}" Width="130"/>
             </DataGrid.Columns>
         </DataGrid>

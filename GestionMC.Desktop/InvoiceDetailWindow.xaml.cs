@@ -44,7 +44,8 @@ public partial class InvoiceDetailWindow : Window
         var (header, items) = SriXmlParser.ParseFacturaAutorizada(xmlContent, _xmlPath);
 
         var groupedItems = items
-            .GroupBy(i => NormalizeCodeKey(i))
+            .Select((item, index) => new { item, index, key = NormalizeCodeKey(item) })
+            .GroupBy(x => string.IsNullOrWhiteSpace(x.key) ? $"__NO_KEY__{x.index}" : x.key, x => x.item)
             .Select(g => BuildAggregatedItem(g))
             .ToList();
 

@@ -39,7 +39,7 @@ public static class AppHost
         {
             var file = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "SriExtractor",
+                "GestionMC",
                 "disabled_providers.xml");
             return new DisabledProvidersStore(file);
         });

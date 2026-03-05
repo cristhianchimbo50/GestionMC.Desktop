@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Oracle.ManagedDataAccess.Client;
@@ -11,6 +12,7 @@ namespace GestionMC.Desktop;
 public partial class ColoresWindow : Window
 {
     private readonly IOracleColorService _colorService;
+    private CancellationTokenSource? _cts;
 
     public ColoresWindow()
     {
@@ -20,7 +22,7 @@ public partial class ColoresWindow : Window
         GridColores.CanUserResizeRows = false;
     }
 
-    private async Task BuscarAsync()
+    private async Task BuscarAsync(CancellationToken cancellationToken = default)
     {
         try
         {
@@ -38,7 +40,10 @@ public partial class ColoresWindow : Window
                 return;
             }
 
-            var data = await Task.Run(() => _colorService.BuscarColores(cedula, color, nombre, desde, hasta));
+            var data = await Task.Run(() => _colorService.BuscarColores(cedula, color, nombre, desde, hasta), cancellationToken);
+
+            if (cancellationToken.IsCancellationRequested)
+                return;
 
             GridColores.ItemsSource = data;
             LblStatus.Text = $"Total registros: {data.Count}";
@@ -55,7 +60,7 @@ public partial class ColoresWindow : Window
 
     private void BtnBuscar_Click(object sender, RoutedEventArgs e)
     {
-        _ = BuscarAsync();
+        TriggerAutoBuscar();
     }
 
     private void BtnLimpiar_Click(object sender, RoutedEventArgs e)
@@ -67,5 +72,18 @@ public partial class ColoresWindow : Window
         DpHasta.SelectedDate = null;
         GridColores.ItemsSource = null;
         LblStatus.Text = "Listo.";
+    }
+
+    private void TxtFiltro_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+    {
+        TriggerAutoBuscar();
+    }
+
+    private void TriggerAutoBuscar()
+    {
+        _cts?.Cancel();
+        _cts = new CancellationTokenSource();
+        var token = _cts.Token;
+        _ = BuscarAsync(token);
     }
 }

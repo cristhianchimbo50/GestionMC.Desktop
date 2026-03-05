@@ -55,6 +55,13 @@ public partial class MainWindow : Window
         win.Show();
     }
 
+    private void BtnOpenFacturasMes_Click(object sender, RoutedEventArgs e)
+    {
+        var win = new FacturasMesWindow();
+        win.Owner = this;
+        win.Show();
+    }
+
     private void BtnOpenDisabledProviders_Click(object sender, RoutedEventArgs e)
     {
         var win = new DisabledProvidersWindow(_disabledStore);
@@ -119,7 +126,7 @@ public partial class MainWindow : Window
 
             var baseFolder = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "GestionMC.Desktop",
+                "GestionMC",
                 "Xml");
 
             if (!Directory.Exists(baseFolder)) return;
