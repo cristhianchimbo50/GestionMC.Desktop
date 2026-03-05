@@ -1,0 +1,59 @@
+<Window x:Class="GestionMC.Desktop.EmitidosWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Comprobantes emitidos / retenciones"
+        Height="520"
+        Width="520"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid Margin="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="96*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="385*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,12" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,12,0">
+                <TextBlock Text="Año" FontWeight="SemiBold"/>
+                <ComboBox x:Name="CmbYear" Height="30"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,0,12,0">
+                <TextBlock Text="Mes" FontWeight="SemiBold"/>
+                <ComboBox x:Name="CmbMonth" Height="30"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="Value"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Orientation="Vertical">
+                <Button x:Name="BtnDescargar"
+                        Content="Descargar retenciones"
+                        Height="36"
+                        Width="190"
+                        HorizontalAlignment="Left"
+                        Margin="0,16,0,0"
+                        Click="BtnDescargar_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="1" Padding="8" BorderBrush="#FFCED4DA" BorderThickness="1" Background="White" Margin="0,0,0,8" Grid.ColumnSpan="3">
+            <TextBlock x:Name="LblStatus" Text="Listo." TextWrapping="Wrap"/>
+        </Border>
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="3">
+            <TextBox x:Name="TxtLog" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+        </ScrollViewer>
+    </Grid>
+</Window>

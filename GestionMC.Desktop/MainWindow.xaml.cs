@@ -70,6 +70,20 @@ public partial class MainWindow : Window
         _ = _vm.LoadLocalAsync(_vm.SelectedYear, _vm.SelectedMonth, _vm.SelectedDay);
     }
 
+    private void BtnOpenEmitidos_Click(object sender, RoutedEventArgs e)
+    {
+        var win = new EmitidosWindow();
+        win.Owner = this;
+        win.Show();
+    }
+
+    private void BtnOpenRecibidosPaginado_Click(object sender, RoutedEventArgs e)
+    {
+        var win = new RecibidosPaginadoWindow();
+        win.Owner = this;
+        win.Show();
+    }
+
     private void GridRecibidos_ContextMenuOpened(object sender, RoutedEventArgs e)
     {
         try

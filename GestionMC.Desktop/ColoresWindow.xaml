@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Colores de facturas"
         Height="620"
-        Width="1291"
+        Width="1400"
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource PageBackground}">
 
@@ -24,41 +24,32 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="190"/>
-                    <ColumnDefinition Width="190"/>
                     <ColumnDefinition Width="250"/>
-                    <ColumnDefinition Width="160"/>
-                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="250"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Vertical" Margin="0,0,12,0">
-                    <TextBlock Text="Cédula" FontWeight="SemiBold" FontSize="14"/>
+                    <TextBlock Text="Cédula/RUC" FontWeight="SemiBold" FontSize="14"/>
                     <TextBox x:Name="TxtCedula" Height="28" FontSize="14" TextChanged="TxtFiltro_TextChanged" CharacterCasing="Upper"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,0,12,0">
-                    <TextBlock FontWeight="SemiBold" FontSize="14"><Run Text="Color (DV_CH"/><Run Text="ASIS)"/></TextBlock>
-                    <TextBox x:Name="TxtColor" Height="28" FontSize="14" TextChanged="TxtFiltro_TextChanged" CharacterCasing="Upper"/>
-                </StackPanel>
-
-                <StackPanel Grid.Column="2" Orientation="Vertical" Margin="0,0,12,0">
-                    <TextBlock Text="Nombre" FontWeight="SemiBold" FontSize="14"/>
+                    <TextBlock Text="Nombre Cliente" FontWeight="SemiBold" FontSize="14"/>
                     <TextBox x:Name="TxtNombre" Height="28" FontSize="14" TextChanged="TxtFiltro_TextChanged" CharacterCasing="Upper"/>
                 </StackPanel>
 
+                <StackPanel Grid.Column="2" Orientation="Vertical" Margin="0,0,12,0">
+                    <TextBlock Text="Código Producto" FontWeight="SemiBold" FontSize="14"/>
+                    <TextBox x:Name="TxtCodigo" Height="28" FontSize="14" TextChanged="TxtFiltro_TextChanged" CharacterCasing="Upper"/>
+                </StackPanel>
+
                 <StackPanel Grid.Column="3" Orientation="Vertical" Margin="0,0,12,0">
-                    <TextBlock Text="Fecha desde" FontWeight="SemiBold" FontSize="14"/>
-                    <DatePicker x:Name="DpDesde" SelectedDateFormat="Short" FontSize="14"/>
+                    <TextBlock FontWeight="SemiBold" FontSize="14"><Run Text="Color"/></TextBlock>
+                    <TextBox x:Name="TxtColor" Height="28" FontSize="14" TextChanged="TxtFiltro_TextChanged" CharacterCasing="Upper"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="4" Orientation="Vertical" Margin="0,0,12,0">
-                    <TextBlock Text="Fecha hasta" FontWeight="SemiBold" FontSize="14"/>
-                    <DatePicker x:Name="DpHasta" SelectedDateFormat="Short" FontSize="14"/>
-                </StackPanel>
-
-                <StackPanel Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <Button Content="Limpiar" Width="110" Height="32" Click="BtnLimpiar_Click"/>
-                </StackPanel>
             </Grid>
         </Border>
 
@@ -79,7 +70,7 @@
                 <DataGridTextColumn Header="Código" Binding="{Binding CodigoItem}" Width="120"/>
                 <DataGridTextColumn Header="Ítem" Binding="{Binding NombreItem}" Width="220"/>
                 <DataGridTextColumn Header="Color" Binding="{Binding Color}" Width="140"/>
-                <DataGridTextColumn Header="Total con IVA" Binding="{Binding TotalConIva, StringFormat=N2}" Width="130"/>
+                <DataGridTextColumn Header="Precio con IVA" Binding="{Binding PrecioConIva, StringFormat=N2}" Width="130"/>
             </DataGrid.Columns>
         </DataGrid>
 

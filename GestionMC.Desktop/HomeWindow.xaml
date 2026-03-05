@@ -24,7 +24,14 @@
                         Content="Buscar colores de facturas"
                         Height="42"
                         FontSize="16"
-                        Click="BtnColores_Click"/>
+                        Click="BtnColores_Click"
+                        Margin="0,0,0,10"/>
+
+                <Button x:Name="BtnRetencionesClientes"
+                        Content="Retenciones clientes"
+                        Height="42"
+                        FontSize="16"
+                        Click="BtnRetencionesClientes_Click"/>
             </StackPanel>
         </Border>
     </Grid>

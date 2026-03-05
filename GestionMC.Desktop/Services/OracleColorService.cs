@@ -14,7 +14,7 @@ public class OracleColorService : IOracleColorService
         _connectionString = connectionString;
     }
 
-    public List<ColorFacturaRow> BuscarColores(string? cedula, string? chasis, string? nombre, DateTime? fechaDesde, DateTime? fechaHasta)
+    public List<ColorFacturaRow> BuscarColores(string? cedula, string? nombre, string? codigoItem, string? color)
     {
         var list = new List<ColorFacturaRow>();
 
@@ -27,7 +27,7 @@ public class OracleColorService : IOracleColorService
     D.DV_CHASIS,
     I.IT_CODANT,
     I.IT_NOMBRE,
-    (D.DV_TOTAL * 1.15) AS TOTAL_CON_IVA
+    (D.DV_PRECIO * 1.15) AS TOTAL_CON_IVA
 FROM FA_CLIEN C,
      FA_VENTA V,
      FA_DETVE D,
@@ -37,11 +37,10 @@ WHERE V.CE_CODIGO = C.CE_CODIGO
   AND D.IT_CODIGO = I.IT_CODIGO
   AND D.DV_CHASIS IS NOT NULL
   AND (:cedula IS NULL OR C.CE_RUCIC LIKE '%' || :cedula || '%')
-  AND (:chasis IS NULL OR D.DV_CHASIS LIKE '%' || :chasis || '%')
   AND (:nombre IS NULL OR UPPER(C.CE_NOMBRE) LIKE '%' || UPPER(:nombre) || '%')
-  AND (:fechaDesde IS NULL OR V.VE_FECHA >= :fechaDesde)
-  AND (:fechaHasta IS NULL OR V.VE_FECHA <= :fechaHasta)
-ORDER BY V.VE_FECHA DESC, V.VE_NUMERO DESC";
+  AND (:codigo IS NULL OR I.IT_CODANT LIKE '%' || :codigo || '%')
+  AND (:color IS NULL OR D.DV_CHASIS LIKE '%' || :color || '%')
+ORDER BY C.CE_RUCIC, C.CE_NOMBRE, I.IT_CODANT, D.DV_CHASIS, V.VE_FECHA DESC, V.VE_NUMERO DESC";
 
         using var connection = new OracleConnection(_connectionString);
         connection.Open();
@@ -52,10 +51,10 @@ ORDER BY V.VE_FECHA DESC, V.VE_NUMERO DESC";
         };
 
         command.Parameters.Add(new OracleParameter("cedula", string.IsNullOrWhiteSpace(cedula) ? DBNull.Value : cedula.Trim()));
-        command.Parameters.Add(new OracleParameter("chasis", string.IsNullOrWhiteSpace(chasis) ? DBNull.Value : chasis.Trim()));
         command.Parameters.Add(new OracleParameter("nombre", string.IsNullOrWhiteSpace(nombre) ? DBNull.Value : nombre.Trim()));
-        command.Parameters.Add(new OracleParameter("fechaDesde", fechaDesde.HasValue ? fechaDesde.Value.Date : DBNull.Value));
-        command.Parameters.Add(new OracleParameter("fechaHasta", fechaHasta.HasValue ? fechaHasta.Value.Date : DBNull.Value));
+        command.Parameters.Add(new OracleParameter("codigo", string.IsNullOrWhiteSpace(codigoItem) ? DBNull.Value : codigoItem.Trim()));
+        command.Parameters.Add(new OracleParameter("color", string.IsNullOrWhiteSpace(color) ? DBNull.Value : color.Trim()));
+
 
         using var reader = command.ExecuteReader();
 
@@ -76,7 +75,7 @@ ORDER BY V.VE_FECHA DESC, V.VE_NUMERO DESC";
                 Color = reader["DV_CHASIS"]?.ToString()?.Trim() ?? string.Empty,
                 CodigoItem = reader["IT_CODANT"]?.ToString()?.Trim() ?? string.Empty,
                 NombreItem = reader["IT_NOMBRE"]?.ToString()?.Trim() ?? string.Empty,
-                TotalConIva = total
+                PrecioConIva = total
             });
         }
 

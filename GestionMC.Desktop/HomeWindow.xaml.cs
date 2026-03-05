@@ -26,5 +26,14 @@ namespace GestionMC.Desktop
             };
             win.Show();
         }
+
+        private void BtnRetencionesClientes_Click(object sender, RoutedEventArgs e)
+        {
+            var win = new RetencionesClientesWindow
+            {
+                Owner = this
+            };
+            win.Show();
+        }
     }
 }

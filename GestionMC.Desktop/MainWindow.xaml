@@ -103,6 +103,14 @@
                 <Button Content="Proveedores desactivados"
                     Width="170" Height="38" Margin="12,0,0,0"
                     Click="BtnOpenDisabledProviders_Click"/>
+
+                <Button Content="Emitidos/Retenciones"
+                        Width="180" Height="38" Margin="12,0,0,0"
+                        Click="BtnOpenEmitidos_Click"/>
+
+                <Button Content="Recibidos paginado"
+                        Width="170" Height="38" Margin="12,0,0,0"
+                        Click="BtnOpenRecibidosPaginado_Click"/>
             </StackPanel>
         </Border>
 

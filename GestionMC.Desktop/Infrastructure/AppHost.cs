@@ -25,6 +25,8 @@ public static class AppHost
         services.AddSingleton<IStoragePathProvider, StoragePathProvider>();
 
         services.AddTransient<ISriRecibidosService, SriRecibidosService>();
+        services.AddTransient<ISriRecibidosPaginadoService, SriRecibidosPaginadoService>();
+        services.AddTransient<ISriEmitidosService, SriEmitidosService>();
         services.AddTransient<IOracleProveedorService>(sp => new OracleProveedorService(BuildConnectionString(settings)));
         services.AddTransient<IOracleFacturaPagoService>(sp => new OracleFacturaPagoService(BuildConnectionString(settings)));
         services.AddTransient<IOracleColorService>(sp => new OracleColorService(BuildConnectionString(settings)));

@@ -14,6 +14,17 @@
     <PackageReference Include="Microsoft.Playwright" Version="1.58.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="3.21.110" />
+    <PackageReference Include="PdfSharpCore" Version="1.3.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="RetencionClienteDetailWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Update="RetencionClienteDetailWindow.xaml.cs">
+      <DependentUpon>RetencionClienteDetailWindow.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

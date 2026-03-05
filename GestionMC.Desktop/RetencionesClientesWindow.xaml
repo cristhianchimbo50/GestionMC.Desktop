@@ -1,0 +1,115 @@
+<Window x:Class="GestionMC.Desktop.RetencionesClientesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Retenciones clientes"
+        Height="560"
+        Width="1500"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Background="#FFF4F5F7">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="260"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.ColumnSpan="2" Padding="16" Background="White" BorderBrush="#FFCED4DA" BorderThickness="1" CornerRadius="6" Margin="0,0,0,10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,12,4"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Año" FontWeight="SemiBold" Margin="0,0,12,4"/>
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="Mes" FontWeight="SemiBold" Margin="0,0,12,4"/>
+                <TextBlock Grid.Row="0" Grid.Column="3" Margin="0,0,0,4"/>
+
+                <Button Grid.Row="1" Grid.Column="0"
+                        x:Name="BtnGenerarSesion"
+                        Content="Generar sesión"
+                        Width="160"
+                        Height="34"
+                        Margin="0,0,12,0"
+                        Click="BtnGenerarSesion_Click"/>
+
+                <ComboBox Grid.Row="1" Grid.Column="1"
+                          x:Name="CmbYear"
+                          Width="100"
+                          Height="30"
+                          Margin="0,0,12,0"/>
+
+                <ComboBox Grid.Row="1" Grid.Column="2"
+                          x:Name="CmbMonth"
+                          Width="140"
+                          Height="30"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="Value"
+                          Margin="0,0,12,0"/>
+
+                <Button Grid.Row="1" Grid.Column="3"
+                        x:Name="BtnDescargar"
+                        Content="Descargar"
+                        Width="140"
+                        Height="34"
+                        Click="BtnDescargar_Click"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" Padding="10" Background="White" BorderBrush="#FFCED4DA" BorderThickness="1" CornerRadius="6" Margin="0,0,10,0">
+            <DataGrid x:Name="GridRetenciones"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserAddRows="False"
+                      CanUserSortColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserResizeRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="110"/>
+                    <DataGridTextColumn Header="RUC" Binding="{Binding Ruc}" Width="120"/>
+                    <DataGridTextColumn Header="Cliente" Binding="{Binding Cliente}" Width="*"/>
+                    <DataGridTextColumn Header="N° Comprobante" Binding="{Binding NumeroComprobante}" Width="150"/>
+                    <DataGridTextColumn Header="Importe total" Binding="{Binding ImporteTotal}" Width="110"/>
+                    <DataGridTextColumn Header="Doc. sustento" Binding="{Binding NumeroDocSustento}" Width="140"/>
+                    <DataGridTemplateColumn Header="Ver" Width="70">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="55" Height="26" Click="BtnVer_Click" FontFamily="Segoe MDL2 Assets">
+                                    <TextBlock Text="&#xE8A0;" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="1" Padding="10" Background="White" BorderBrush="#FFCED4DA" BorderThickness="1" CornerRadius="6">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Año > Mes > Cliente" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <TreeView x:Name="TreeFechas" MouseDoubleClick="TreeFechas_MouseDoubleClick" />
+                </ScrollViewer>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" Grid.ColumnSpan="2" Padding="10" Background="White" BorderBrush="#FFCED4DA" BorderThickness="1" CornerRadius="6" Margin="0,10,0,0">
+            <TextBlock x:Name="LblStatus" Text="Listo." TextWrapping="Wrap"/>
+        </Border>
+    </Grid>
+</Window>

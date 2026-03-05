@@ -19,7 +19,7 @@ public interface IOracleFacturaPagoService
 
 public interface IOracleColorService
 {
-    List<ColorFacturaRow> BuscarColores(string? cedula, string? chasis, string? nombre, DateTime? fechaDesde, DateTime? fechaHasta);
+    List<ColorFacturaRow> BuscarColores(string? cedula, string? nombre, string? codigoItem, string? color);
 }
 
 public interface ISriRecibidosService

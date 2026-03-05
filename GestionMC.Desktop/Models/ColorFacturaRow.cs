@@ -9,5 +9,5 @@ public class ColorFacturaRow
     public string Color { get; set; } = "";
     public string CodigoItem { get; set; } = "";
     public string NombreItem { get; set; } = "";
-    public decimal TotalConIva { get; set; } = 0;
+    public decimal PrecioConIva { get; set; } = 0;
 }
